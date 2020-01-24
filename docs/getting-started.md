@@ -2,10 +2,10 @@
 You'll need to do the following to get your local environment setup for development.
 
 ## Software Needed
-- Git [Site](https://git-scm.com/)
-- Node [Site](https://nodejs.org/en/)
-- AWS CLI V2 [Site](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html)
-- 7-Zip [Site](https://www.7-zip.org/)
+- <a href="https://git-scm.com/" target="_blank">Git</a>
+- <a href="https://nodejs.org/en/" target="_blank">Node</a>
+- <a href="https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html" target="_blank">AWS CLI V2</a>
+- <a href="https://www.7-zip.org/" target="_blank">7-Zip</a>
 - Powershell (*included with Windows*)
 - Your development IDE of choice
 
