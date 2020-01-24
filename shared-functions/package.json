@@ -1,0 +1,21 @@
+{
+  "name": "confyeti-shared-functions",
+  "version": "1.0.0",
+  "description": "Shared functions used across the Confyeti API",
+  "main": "index.js",
+  "scripts": {
+    "clean": "7z d shared-functions.zip *",
+    "deploy": "npm run clean & npm run zip & npm run publish",
+    "publish": "aws2 --profile confyeti lambda publish-layer-version --layer-name confyeti-shared-functions --zip-file fileb://shared-functions.zip --compatible-runtimes nodejs12.x",
+    "test": "mocha 'tests/*.test.js'",
+    "zip": "7z a shared-functions.zip index.js & 7z a shared-functions.zip node_modules\\"
+  },
+  "author": "Momentum Code",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.608.0"
+  },
+  "devDependencies": {
+    "mocha": "^7.0.0"
+  }
+}

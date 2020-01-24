@@ -1,0 +1,16 @@
+{
+  "name": "confyeti-api-users",
+  "version": "1.0.0",
+  "description": "API handler for users requests to the TV Me API",
+  "main": "index.js",
+  "scripts": {
+    "clean": "7z d confyeti-api-users.zip *",
+    "predeploy": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./pre-deploy.ps1",
+    "deploy": "npm run clean & npm run predeploy & npm run zip & npm run publish",
+    "publish": "aws2 --profile confyeti lambda update-function-code --function-name confyeti-api-users --zip-file fileb://confyeti-api-users.zip",
+    "test": "mocha 'tests/*.test.js'",
+    "zip": "7z a confyeti-api-users.zip index.js.tmp & 7z rn confyeti-api-users.zip index.js.tmp index.js"
+  },
+  "author": "Mike Jancar",
+  "license": "ISC"
+}

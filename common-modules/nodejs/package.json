@@ -1,0 +1,19 @@
+{
+  "name": "confyeti-common-modules",
+  "version": "1.0.0",
+  "description": "Common node modules used by the Confyeti API",
+  "scripts": {
+    "clean": "7z d ..\\common-modules.zip *",
+    "deploy": "npm run clean & npm run zip & npm run publish",
+    "publish": "aws2 --profile confyeti lambda publish-layer-version --layer-name confyeti-common-modules --zip-file fileb://../common-modules.zip --compatible-runtimes nodejs12.x",
+    "zip": "7z a ..\\common-modules.zip ..\\nodejs\\"
+  },
+  "author": "Momentum Code",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.608.0"
+  },
+  "devDependencies": {
+    "mocha": "^7.0.0"
+  }
+}
