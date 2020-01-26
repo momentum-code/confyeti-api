@@ -23,3 +23,10 @@ jobs:
       working-directory: ./common-modules/nodejs
       env:
         CI: true
+    - name: Install, test shared-functions
+      run: |
+        npm ci
+        npm run test
+      working-directory: ./shared-functions
+      env:
+        CI: true
