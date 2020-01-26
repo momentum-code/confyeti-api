@@ -6,6 +6,7 @@ You'll need to do the following to get your local environment setup for developm
 - <a href="https://nodejs.org/en/" target="_blank">Node</a>
 - <a href="https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html" target="_blank">AWS CLI V2</a>
 - <a href="https://www.7-zip.org/" target="_blank">7-Zip</a>
+    > After installing 7-Zip, you'll need to add the directory (usually ```C:\Program Files\7-Zip```) to your PATH variable or you may do something horrible to your PC later on.
 - Powershell (*included with Windows*)
 - Your development IDE of choice
 
