@@ -30,3 +30,11 @@ jobs:
       working-directory: ./shared-functions
       env:
         CI: true
+    - name: Test users package
+      run: |
+        ln -s ../common-modules/nodejs/node_modules/ node_modules
+        ln -s ../shared-functions/ opt
+        npm run test
+      working-directory: ./users
+      env:
+        CI: true
