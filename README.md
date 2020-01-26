@@ -1,3 +1,5 @@
+<img align="right" src="https://github.com/momentum-code/confyeti-api/workflows/Node%20CI/badge.svg">
+
 # Confyeti API
 
 ## Overview
