@@ -34,7 +34,7 @@ async function registerUser(event) {
 
     return sharedFunc.createResponse(200, { successMessage: 'User registered, email sent' });
   } catch (error) {
-    console.log(`User registration failed for ${body.Email}`);
+    console.log(`User registration failed for ${body.Email}: ${error}`);
     return sharedFunc.createResponse(500, { errorMessage: 'Internal server error' });
   }
 }
