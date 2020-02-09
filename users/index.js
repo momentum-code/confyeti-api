@@ -1,6 +1,5 @@
 const AWS = require('aws-sdk');
 const sharedFunc = require('./opt/index');
-const config = require('./config.json');
 
 exports.handler = async (event) => {
   let response = {};
@@ -13,7 +12,7 @@ exports.handler = async (event) => {
       response = await registerUser(event);
       break
     default:
-      response = sharedFunc.createResponse(400, { errorMessage: 'Bad request!' });
+      response = sharedFunc.createResponse(400, { errorMessage: 'Bad request' });
   }
   return response;
 };
@@ -21,15 +20,23 @@ exports.handler = async (event) => {
 async function registerUser(event) {
   const body = JSON.parse(event.body);
 
-  var params = {
-    ClientId: config.develop.cognitoClientId,
-    Password: body.Password,
-    Username: body.Email
-  };
+  try {
+    const environment = event.requestContext.stage || 'Development';
+    const config = await sharedFunc.getEnvironmentConfig(environment);
 
-  await callSignUp(params);
+    var params = {
+      ClientId: config.cognitoClientId,
+      Password: body.Password,
+      Username: body.Email
+    };
 
-  return sharedFunc.createResponse(200, { successMessage: 'User registered, email sent' });
+    await callSignUp(params);
+
+    return sharedFunc.createResponse(200, { successMessage: 'User registered, email sent' });
+  } catch (error) {
+    console.log(`User registration failed for ${body.Email}: ${error}`);
+    return sharedFunc.createResponse(500, { errorMessage: 'Internal server error' });
+  }
 }
 
 async function callSignUp(params) {

@@ -3,7 +3,7 @@ var users = require('../index');
 
 describe('The Users API', () => {
   it('should return a 400 when an invalid verb is requested', async () => {
-    const event = { httpMethod: 'GET' };
+    const event = { httpMethod: 'DELETE' };
     const response = await users.handler(event);
     const responseBody = JSON.parse(response.body);
 
