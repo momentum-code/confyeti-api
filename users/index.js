@@ -1,15 +1,12 @@
 const AWS = require('aws-sdk');
 const sharedFunc = require('./opt/index');
 
-exports.handler = async (event) => {
+exports.handler = async (request) => {
   let response = {};
 
-  switch (event.httpMethod) {
-    case 'GET':
-      response = sharedFunc.createResponse(200, { successMessage: 'Way to go!' });
-      break;
+  switch (request.httpMethod) {
     case 'POST':
-      response = await registerUser(event);
+      response = await registerUser(request);
       break
     default:
       response = sharedFunc.createResponse(400, { errorMessage: 'Bad request' });
@@ -17,11 +14,11 @@ exports.handler = async (event) => {
   return response;
 };
 
-async function registerUser(event) {
-  const body = JSON.parse(event.body);
+async function registerUser(request) {
+  const body = JSON.parse(request.body);
 
   try {
-    const environment = event.requestContext.stage || 'Development';
+    const environment = request.requestContext.stage || 'Development';
     const config = await sharedFunc.getEnvironmentConfig(environment);
 
     var params = {
